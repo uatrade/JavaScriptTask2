@@ -1,0 +1,94 @@
+﻿ <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <title>JavaScrip Fraction</title>
+    </head>
+    <body>
+        <!--Задание 2
+        Создать объект, хранящий в себе отдельно числитель и зна-
+        менатель дроби, и следующие функции для работы с этим объ-
+        ектом.
+        1. Функция сложения 2-х объектов-дробей.
+        2. Функция вычитания 2-х объектов-дробей.
+        3. Функция умножения 2-х объектов-дробей.
+        4. Функция деления 2-х объектов-дробей.
+        5. Функция сокращения объекта-дроби.-->
+        <script>
+            function sum(num1, num2) {              //сложение
+                var res = {};
+
+                res.numerator = num1.numerator * num2.denumerator + num1.denumerator * num2.numerator;
+                res.denumerator = num1.denumerator * num2.denumerator;
+                return res;
+            }
+
+            function subtraction(num1, num2) {                 //вычитание
+                var res = {};
+                res.numerator = num1.numerator * num2.denumerator - num1.denumerator * num2.numerator;
+                res.denumerator = num1.denumerator * num2.denumerator;
+                return res;
+            }
+            function multiplication(num1, num2) {             //умножение
+                var res = {};
+                res.numerator = num1.numerator * num2.numerator;
+                res.denumerator = num1.denumerator * num2.denumerator;
+                return res;
+            }
+
+            function devision(num1, num2) {
+                var res = {};
+                res.numerator = num1.numerator * num2.denumerator;     //деление
+                res.denumerator = num1.denumerator * num2.numerator;
+                return res;
+            }
+
+            function reduction(result) {                        //сокращение дробей
+
+                for (var i = 2; i <= 5; i++) {
+                    if (result.numerator % 2 == 0 && result.denumerator % 2 == 0) {
+                        result.numerator = result.numerator / 2;
+                        result.denumerator = result.denumerator / 2;
+                        return reduction(result);
+                    }
+                    if (result.numerator % 3 == 0 && result.denumerator % 3 == 0) {
+                        result.numerator = result.numerator / 3;
+                        result.denumerator = result.denumerator / 3;
+                        return reduction(result);
+                    }
+                    if (result.numerator % 5 == 0 && result.denumerator % 5 == 0) {
+                        result.numerator = result.numerator / 5;
+                        result.denumerator = result.denumerator / 5;
+                        return reduction(result);
+                    }
+
+                    else
+                        return result;
+                }
+
+            }
+
+            var first = {};
+            first.numerator = 2;
+            first.denumerator = 5;
+
+            var second = {};
+            second.numerator = 4;
+            second.denumerator = 15;
+
+            var result = sum(first, second);
+            reduction(result);          //сокращение дробей
+            alert(first.numerator + "/" + first.denumerator + "+" + second.numerator + "/" + second.denumerator + "=" + result.numerator + "/" + result.denumerator);
+            var result = subtraction(first, second);
+            result = reduction(result);
+            alert(first.numerator + "/" + first.denumerator + "-" + second.numerator + "/" + second.denumerator + "=" + result.numerator + "/" + result.denumerator);
+            var result = multiplication(first, second);
+            reduction(result);
+            alert(first.numerator + "/" + first.denumerator + "*" + second.numerator + "/" + second.denumerator + "=" + result.numerator + "/" + result.denumerator);
+            var result = devision(first, second);
+            reduction(result);
+            alert(first.numerator + "/" + first.denumerator + " / " + second.numerator + "/" + second.denumerator + "=" + result.numerator + "/" + result.denumerator);
+
+        </script>
+    </body>
+</html>

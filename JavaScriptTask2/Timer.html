@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>JavascriptTimer</title>
+</head>
+<body>
+    
+    <!--Задание 3
+    Создать объект, описывающий время (часы, минуты, секун-
+    ды), и следующие функции для работы с этим объектом.
+    1. Функция вывода времени на экран.
+    2. Функция изменения времени на переданное количество
+    секунд.
+    3. Функция изменения времени на переданное количество
+    минут.
+    4. Функция изменения времени на переданное количество
+    часов.-->
+
+   <script>
+        var timer = {};
+        timer.hours = 10;
+        timer.minutes = 45;
+        timer.seconds = 32;
+
+       var days = 0;
+       var checkDay = false;
+
+       function mytime(checkDay) {              //вывод на экран
+           if (!checkDay)
+                return document.write(timer.hours + ":" + timer.minutes + ":" + timer.seconds);
+           else
+                return document.write(timer.hours + ":" + timer.minutes + ":" + timer.seconds+" + добавлено "+days+"дней");
+        }
+    </script>
+
+    <p>
+        <b></b>Первоначальное время:</b>
+        <script>document.write(mytime(checkDay).innerHTML)</script>
+    </p>
+
+    <script>
+
+        function changeHours(timer, check) {
+            if(!check)
+            timer.hours = timer.hours + +prompt("Фактическое время " + timer.hours + ":" + timer.minutes + ":" + timer.seconds + "\n" + "Увеличить количество часов на:", 0);
+
+            if (timer.hours >= 24) {
+                days = Math.floor(timer.hours / 24);
+                alert("Добавлено: " + days + " Дней");
+                checkDay = true;
+                if (timer.hours % 24 < 10)
+                    timer.hours = "0" + timer.hours % 24;
+                else
+                    timer.hours = timer.hours % 24;
+            }
+        }
+
+        var change = confirm("Вы хотите добавить количество часов " + timer.hours + ":" + timer.minutes + ":" + timer.seconds);
+        if (change) {
+            changeHours(timer, false);
+        }
+    </script>
+
+    <p>
+        <b>Время после добавления часов:</b>
+        <script>document.write(mytime(checkDay).innerHTML)</script>
+    </p>
+
+    <script>
+        function changeMinutes(timer, check) {
+            if (!check)
+            timer.minutes = timer.minutes + +prompt("Фактическое время " + timer.hours + ":" + timer.minutes + ":" + timer.seconds + "\n" + "Увеличить количество минут на:", 0);
+            checkDay = false;
+            if (timer.minutes >= 60) {
+                timer.hours = +timer.hours + +Math.floor(timer.minutes / 60);
+                if (timer.minutes % 60 < 10)
+                    timer.minutes = "0" + timer.minutes % 60;
+                else
+                    timer.minutes = timer.minutes % 60;
+                if (timer.hours % 60 < 10)
+                    timer.hours = "0" + timer.hours;
+                changeHours(timer, true);
+            }    
+        }
+
+        var change = confirm("Вы хотите добавить количество минут " + timer.hours + ":" + timer.minutes + ":" + timer.seconds);
+        if (change) {
+            changeMinutes(timer, false);
+        }
+    </script>
+    <p>
+        <b>Время после добавления минут:</b>
+        <script>document.write(mytime(checkDay).innerHTML)</script>
+    </p>
+
+    <script>
+        function changeSeconds(timer, check) {
+            if (!check)
+            timer.seconds = timer.seconds + + prompt("Фактическое время " + timer.hours + ":" + timer.minutes + ":" + timer.seconds + "\n" + "Увеличить количество секунд на:", 0);
+            checkDay = false;
+            if (timer.seconds >= 60) {
+                timer.minutes = +timer.minutes + +Math.floor(timer.seconds / 60);
+                if (timer.seconds % 60 < 10)
+                    timer.seconds = "0" + timer.seconds % 60;
+                else
+                    timer.seconds = timer.seconds % 60;
+                if (timer.minutes < 10)
+                    timer.minutes = "0" + timer.minutes;
+                changeMinutes(timer, true);
+            }
+        }
+
+        var change = confirm("Вы хотите добавить количество секунд " + timer.hours + ":" + timer.minutes + ":" + timer.seconds);
+        if (change) {
+            changeSeconds(timer, false);
+        }
+    </script>
+    <p>
+        <b>Время после добавления секунд:</b>
+        <script>document.write(mytime(checkDay).innerHTML)</script>
+    </p>
+
+</body>
+</html>
